@@ -1,0 +1,305 @@
+(0) displaying the string in reverse
+	std::string s;
+	std::cout << "Enter a string : ";
+	std::cin >> s;
+	std::cout << "\nEntered string : ";
+	for (char c : s) {
+		std::cout << c;
+	}
+	std::cout << "\nString in reverse : ";
+	int n = s.size();
+	for (int i = n - 1; i >= 0; i--)
+	{
+		std::cout << s[i];
+	}
+--------------------------------------------
+(1) MIN and MAX in an array
+	const int maxsize = 20;
+	int n, a[maxsize], min, max;
+	std::cout << "Enter number of elements : ";
+	std::cin >> n;
+	std::cout << "Enter " << n << " elements : ";
+	for (int i = 0; i < n; i++)
+	{
+		std::cin >> a[i];
+	}
+	max = min = a[0];
+	std::cout << "\nPrinting array : ";
+	for (int i = 0; i < n; i++)
+	{
+		std::cout << a[i] << " ";
+		if (max < a[i])
+			max = a[i];
+		if (min > a[i])
+			min = a[i];
+	}
+	std::cout << "\nMIN and MAX are : " << min << " & " << max;
+-------------------------------------------------------
+(2)sort an array (using selection sort)
+	const int maxsize = 20;
+	int n, a[maxsize];
+	std::cout << "Enter number of elements : ";
+	std::cin >> n;
+	std::cout << "Enter " << n << " elements : ";
+	for (int i = 0; i < n; i++)
+	{
+		std::cin >> a[i];
+	}
+	std::cout<<"\nEntered array : ";
+	for (int i = 0; i < n; i++)
+	{
+		std::cout << a[i];
+	}
+
+	for (int i = 0; i < n - 1; i++) {					//selection sort
+		int minI = i;
+		for (int j = i + 1; j < n; j++) {
+			if (a[minI] > a[j])
+				minI = j;
+		}
+		if (minI != i) {
+			int temp = a[minI];
+			a[minI] = a[i];
+			a[i] = temp;
+		}
+	}
+	std::cout << "\nArray after selection sort : ";
+	for (int x = 0; x < n; x++) {
+		std::cout << a[x] << ", ";
+	}
+-------------------------------------------------------
+(3) Number of occurrences of each element in the array
+	int n;
+	std::cout << "enter number of elemnents : ";
+	std::cin >> n;
+	int* a = new int[n];
+	std::cout << "\nEnter " << n<< " elements";
+	for (int i = 0; i < n; i++)
+	{
+		std::cin >> a[i];
+	}
+	std::cout << "\nEntered Array : ";
+	for (int i = 0; i < n; i++)
+	{
+		std::cout << a[i] << ", ";
+	}
+	
+	std::vector<int> b{};
+	b.push_back(a[0]);
+	
+	for (int i = 1; i < n; i++)
+	{
+		int f = 0;
+		for (auto m = b.begin(); m != b.end(); m++)
+		{
+			if (*m == a[i])
+				f++;
+		}
+		if (f == 0) // means distinct found not already in b array
+		{
+			b.push_back(a[i]);
+		}
+	}
+	
+	for (int x : b)
+	{
+		int c = 0;
+		for (int i=0; i<n; i++)
+		{
+			if (a[i] == x)
+				c++;
+		}
+		std::cout << "\nCount of " << x << " : " << c<<"\n";
+	}
+	
+-------------------------------------------------------
+(4) Largest string in an array of strings
+	std::string a, b, c, d, e, f;
+	a = "apple";
+	b = "ball";
+	c = "cat";
+	d = "dog";
+	e = "elephant";
+	f = "fountain";
+	const int n = 6;
+	std::string arr[n] = { a, b, c, d ,e,f };
+
+	for (int i = 0; i < n - 1; i++)				//bubble sort strings in array in descending order
+	{
+		int k = 0;
+		for (int j = 0; j < n - i - 1; j++)
+		{
+			if (arr[j].size() < arr[j + 1].size())
+			{
+				std::string t;
+				t = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = t;
+				k++;
+			}
+		}
+		if (k == 0)
+			break;
+	}
+	std::cout << "\nArray of strings are : \n ";
+	for (std::string a : arr)
+		std::cout << a << ", ";
+
+	std::cout << "\n Third largest string is : " << arr[2];
+
+-------------------------------------------------------
+(5) Actually Reverse a string
+	int n, p, q;
+	std::string s;
+	std::cout << "Enter a string : ";
+	std::cin >> s;
+	n = s.size();
+	std::cout << "\nEntered string : ";
+	for (char c : s)
+	{
+		std::cout << c;
+	}
+
+	std::cout << "\nReversed string : ";
+	for (p = 0, q = n - 1; p < q; p++, q--)
+	{
+		char t = s[p];
+		s[p] = s[q];
+		s[q] = t;
+	}
+
+	for (char c : s)
+	{
+		std::cout << c;
+	}
+----------------------------------------------------------
+(6) Reverse each string in an array of strings
+	std::string a, b, c, d, e, f;
+	a = "apple";
+	b = "ball";
+	c = "cat";
+	d = "dog";
+	e = "elephant";
+	f = "fountain";
+	const int n = 6;
+	std::string arr[n] = { a, b, c, d , e, f };
+
+	std::cout << "\nArray of strings :   ";
+	for (std::string a : arr)
+		std::cout << a << ", ";
+
+	std::cout << "\nWith each reversed : ";
+	for (std::string w : arr)
+	{
+		for (int i = w.length() - 1; i >= 0; i--)
+		{
+			std::cout << w[i];
+		}
+		std::cout << ", ";
+	}
+-------------------------------------------------------------
+(7) Duplicates in an array
+			int n;
+	std::cout << "enter number of elemnents : ";
+	std::cin >> n;
+	int* a = new int[n];
+	std::cout << "\nEnter " << n<< " elements";
+	for (int i = 0; i < n; i++)
+	{
+		std::cin >> a[i];
+	}
+	std::cout << "\nEntered Array : ";
+	for (int i = 0; i < n; i++)
+	{
+		std::cout << a[i] << ", ";
+	}
+
+	std::vector<int> b{};
+	b.push_back(a[0]);
+
+	for (int i = 1; i < n; i++)
+	{
+		int f = 0;
+		for (auto m = b.begin(); m != b.end(); m++)
+		{
+			if (*m == a[i])
+				f++;
+		}
+		if (f == 0) // means distinct found not already in b array
+		{
+			b.push_back(a[i]);
+		}
+	}
+
+	for (int x : b)
+	{
+		int c = 0;
+		for (int i=0; i<n; i++)
+		{
+			if (a[i] == x)
+				c++;
+		}
+		if (c > 1)
+		std::cout << "\nDuplicates found of " << x << " in the array ";
+
+	}
+---------------------------------------------------------------------------
+(8)	Product and sum of elements of an array
+	int n, p = 1, s = 0;
+	std::cout << "Enter number of elements : ";
+	std::cin >> n;
+	int* a = new int[n];
+	for (int i = 0; i < n; i++)
+	{
+		std::cin >> a[i];
+	}
+	std::cout << "\nEntered array : ";
+	for (int i = 0; i < n; i++)
+	{
+		std::cout<< a[i]<<", ";
+	}
+	for (int i = 0; i < n; i++)
+	{
+		s += a[i];
+		p *= a[i];
+	}
+	std::cout << "\nsum of elements:" << s;
+	std::cout << "\nproduct of elements:" << p;
+
+	----------------------------------------------------------
+(9) Print subarray of an array
+	int n, s, e;
+	std::cout << "Enter number of elements : ";
+	std::cin >> n;
+	int* a = new int[n];
+	std::cout << "\nEnter array : ";
+	for (int i = 0; i < n; i++)
+	{
+		std::cin >> a[i];
+	}
+	std::cout << "\nEntered array : ";
+	for (int i = 0; i < n; i++)
+	{
+		std::cout << a[i] << ", ";
+	}
+	std::cout << "\nEnter range start and end of subarray.";
+	std::cin >> s >> e;
+	if (((s < 1 || s > n) || (e < 1 || e > n)))
+	{
+		std::cerr << "Invalid range";
+		return 0;
+	}
+	else if (s > e)
+	{
+		std::cerr << "Invalid range";
+		return 0;
+	}
+	else {
+		std::cout << "\n valid range";
+		for (int i = s - 1; i < e; i++)
+		{
+			std::cout << a[i] << ", ";
+		}
+	}
+
+----------------------------------------------------------------
